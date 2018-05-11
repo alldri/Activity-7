@@ -1,0 +1,11 @@
+<%= form_tag "/clients/find" do %>
+<%= text_field_tag :search_string %>
+<%= submit_tag :search %>
+<% end %>
+
+<h1>Editing Client</h1>
+
+<%= render 'form', client: @client %>
+
+<%= link_to 'Show', @client %> |
+<%= link_to 'Back', clients_path %>

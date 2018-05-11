@@ -1,0 +1,40 @@
+<%= form_tag "/workouts/find" do %>
+<%= text_field_tag :search_string %>
+<%= submit_tag :search %>
+<% end %>
+
+<p id="notice"><%= notice %></p>
+
+<h1>Workouts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Client</th>
+      <th>Trainer</th>
+      <th>Duration mins</th>
+      <th>Date of workout</th>
+      <th>Paid amount</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @workouts.each do |workout| %>
+      <tr>
+        <td><%= link_to workout.client.name, {:controller => "clients", :action => "profile", :id => workout.client.id} %></td>
+		<td><%= link_to workout.trainer.name, {:controller => "trainers", :action => "profile", :id => workout.trainer.id} %></td>
+        <td><%= workout.duration_mins %></td>
+        <td><%= workout.date_of_workout %></td>
+        <td><%= workout.paid_amount %></td>
+        <td><%= link_to 'Show', workout %></td>
+        <td><%= link_to 'Edit', edit_workout_path(workout) %></td>
+        <td><%= link_to 'Destroy', workout, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Workout', new_workout_path %>
